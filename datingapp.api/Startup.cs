@@ -32,6 +32,7 @@ namespace datingapp.api
             //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddControllers();
             services.AddCors();
+            services.AddScoped<IAuthRepository, AuthRepository>();
         } 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,13 +48,10 @@ namespace datingapp.api
             }
 
             // app.UseHttpsRedirection();
-
             app.UseRouting();
 
-            
             app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             app.UseAuthorization();
-           // app.UseMvc();
            
             app.UseEndpoints(endpoints =>
             {
