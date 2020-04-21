@@ -10,7 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using System.Text;
 using System;
-using Microsoft.IdentityModel.JsonWebTokens;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace datingapp.api.Controllers
 {
@@ -62,15 +62,25 @@ namespace datingapp.api.Controllers
             {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now.AddDays(1),
-                SigningCredentials = creds,
+                SigningCredentials = creds
             };
-
-            var tokenHandler = new JsonWebTokenHandler(); 
+   
+            var tokenHandler = new JwtSecurityTokenHandler();  
             var token = tokenHandler.CreateToken(tokenDescriptor);
-
-            return Ok(new {
-                 token = tokenHandler.ReadJsonWebToken(token) 
+     
+            return Ok(new  
+            {
+                token = tokenHandler.WriteToken(token)
             });
+                     
+
+            // var tokenHandler = new JsonWebTokenHandler(); 
+            // var token = tokenHandler.CreateToken(tokenDescriptor);
+
+            // return Ok(new {
+            //      token = tokenHandler.ReadJsonWebToken(token) 
+            // });
+
         } 
         
     }
