@@ -74,14 +74,6 @@ namespace datingapp.api.Controllers
             {
                 token = tokenHandler.WriteToken(token)
             });
-                     
-
-            // var tokenHandler = new JsonWebTokenHandler(); 
-            // var token = tokenHandler.CreateToken(tokenDescriptor);
-
-            // return Ok(new {
-            //      token = tokenHandler.ReadJsonWebToken(token) 
-            // });
 
         } 
         
